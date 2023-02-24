@@ -43,11 +43,11 @@ client.on('guildMemberAdd', member => {
         try {
             const response = await got(url, {username: apiKey, password: apiSecret});
             const obj = JSON.parse(response.body);
-            if (obj.result.distance <  1.0)  {
+            if (obj.result.distance <  1.0)  {//only change the obj.result.distance if he bans people to fast you only need to lower it!
                 console.log(obj.result.distance)
                 console.log("je bent gebanned")
                 member.ban({ reason: "Scammer" });
-            }
+            } 
             } catch (error) {
                 JSON.parse(error.response.body);
                 console.log("niks aan de hand")
