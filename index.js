@@ -19,19 +19,40 @@ client.on('guildMemberAdd', member => {
     const apiKey = process.env.GOTAPIKEY;
     const apiSecret = process.env.GOTAPISECRET;
     
-    console.log(member.user.displayAvatarURL());
-    const imageUrl = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.webp?size=240';
-    const image2Url = member.user.displayAvatarURL();
+
+    const imageUrl = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl2 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl3 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl4 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl5 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl6 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl7 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl8 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl9 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl10 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl11 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl12= 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl13 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl14 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const imageUrl15 = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.png';
+    const image2Url = member.user.displayAvatarURL(({extension: "png", size: 256})).toString()
     const categorizer = "general_v3";
-    const url = 'https://api.imagga.com/v2/images-similarity/categories/' + categorizer + '?image_url=' + encodeURIComponent(imageUrl) + '&image2_url='+encodeURIComponent(image2Url);
+    const url = 'https://api.imagga.com/v2/images-similarity/categories/' + categorizer + '?image_url=' + encodeURIComponent(imageUrl) + '?image_url2=' + encodeURIComponent(imageUrl2) + '?image_url3=' + encodeURIComponent(imageUrl3) + '?image_url4=' + encodeURIComponent(imageUrl4) + '?image_url5=' + encodeURIComponent(imageUrl5) + '?image_url6=' + encodeURIComponent(imageUrl6) + '?image_url7=' + encodeURIComponent(imageUrl7) + '?image_url8=' + encodeURIComponent(imageUrl8) + '?image_url9=' + encodeURIComponent(imageUrl9) + '?image_url10=' + encodeURIComponent(imageUrl10) + '?image_url11=' + encodeURIComponent(imageUrl11) + '?image_url12=' + encodeURIComponent(imageUrl12) + '?image_url13=' + encodeURIComponent(imageUrl13) + '?image_url14=' + encodeURIComponent(imageUrl14) + '?image_url15=' + encodeURIComponent(imageUrl15) +  '&image2_url='+encodeURIComponent(image2Url);
     
     (async () => {
         try {
             const response = await got(url, {username: apiKey, password: apiSecret});
-            console.log(response.body);
-        } catch (error) {
-            console.log(error.response.body);
-        }
+            const obj = JSON.parse(response.body);
+            if (obj.result.distance <  1.0)  {
+                console.log(obj.result.distance)
+                console.log("je bent gebanned")
+                member.ban({ reason: "Scammer" });
+            }
+            } catch (error) {
+                JSON.parse(error.response.body);
+                console.log("niks aan de hand")
+
+            }
     })();
 })
 
