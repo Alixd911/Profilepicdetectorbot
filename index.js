@@ -19,9 +19,9 @@ client.on('guildMemberAdd', member => {
     const apiKey = process.env.GOTAPIKEY;
     const apiSecret = process.env.GOTAPISECRET;
     
-    console.log(member.user.avatarURL)
-    const imageUrl = 'https://cdn.discordapp.com/avatars/145199991525212160/7db97bb2622c92851f2d56e22a7b61c6.webp?size=240';
-    const image2Url = member.user.displayAvatarURL;
+    console.log(member.user.displayAvatarURL());
+    const imageUrl = 'https://cdn.discordapp.com/avatars/440589763687219231/1dc54d5e26d1f5e6ddd22d577ee83eb8.webp?size=240';
+    const image2Url = member.user.displayAvatarURL();
     const categorizer = "general_v3";
     const url = 'https://api.imagga.com/v2/images-similarity/categories/' + categorizer + '?image_url=' + encodeURIComponent(imageUrl) + '&image2_url='+encodeURIComponent(image2Url);
     
